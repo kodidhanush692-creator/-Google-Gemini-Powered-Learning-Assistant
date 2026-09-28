@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EduGenie: Google Gemini Powered Learning Assistant</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <!-- Marked.js for fast Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Sidebar / Left Panel -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-icon">🧞‍♂️</span>
+        <div>
+          <h2>EduGenie</h2>
+          <p class="brand-tag">Gemini & FAISS Powered</p>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>📄 PDF Ingestion (RAG)</h3>
+        <p class="sidebar-help">Upload academic notes or textbook chapters to enable grounded Q&A.</p>
+        <form id="uploadForm">
+          <input type="file" id="pdfFileInput" accept=".pdf" required />
+          <button type="submit" id="uploadBtn">Upload & Index 🚀</button>
+        </form>
+        <div id="uploadStatus" class="status-msg"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>⚙️ Engine Status</h3>
+        <div class="engine-badge"><span class="dot active"></span> Cloud: Gemini 1.5 Pro</div>
+        <div class="engine-badge"><span class="dot active"></span> Local: LaMini-Flan-T5-783M</div>
+        <div class="engine-badge"><span class="dot active"></span> Vector Store: FAISS CPU</div>
+      </div>
+
+      <div class="sidebar-footer">
+        <a href="/docs" target="_blank" class="docs-link">📖 FastAPI Swagger Docs</a>
+      </div>
+    </aside>
+
+    <!-- Main Content Studio -->
+    <main class="main-content">
+      <header class="main-header">
+        <h1>Learning Studio</h1>
+        <p>Ask questions, generate practice quizzes, synthesize study guides, and explore concepts.</p>
+      </header>
+
+      <!-- Navigation Tabs -->
+      <nav class="nav-tabs">
+        <button class="tab-btn active" data-action="qna" data-placeholder="Ask any question on any topic (e.g. How does backpropagation work in neural networks?)...">❓ Ask Q&A</button>
+        <button class="tab-btn" data-action="explain" data-placeholder="Enter a concept to explain in simple terms (e.g., Photosynthesis, QuickSort, MapReduce)...">💡 Concept Explainer</button>
+        <button class="tab-btn" data-action="quiz" data-placeholder="Enter topic for auto-generated 3-question MCQ quiz (e.g., SQL Joins, Calculus)...">🎯 Quiz Generator</button>
+        <button class="tab-btn" data-action="summary" data-placeholder="Paste text, notes, or an excerpt you would like to summarize...">📝 Summarizer</button>
+        <button class="tab-btn" data-action="learning_path" data-placeholder="Enter your learning goal (e.g., Master Full-Stack Web Development in 4 weeks)...">🗺️ Learning Path</button>
+        <button class="tab-btn" data-action="doc_qa" data-placeholder="Ask a question grounded specifically in your uploaded PDF document...">📚 Ask Document (RAG)</button>
+      </nav>
+
+      <!-- Output / Chat Canvas -->
+      <div id="outputCanvas" class="output-canvas">
+        <div class="welcome-banner">
+          <h3>Welcome to EduGenie ✨</h3>
+          <p>Select a learning tool from the tabs above or upload a PDF on the left panel to begin.</p>
+        </div>
+      </div>
+
+      <!-- Input Bar -->
+      <form id="interactionForm" class="interaction-form">
+        <div class="input-wrapper">
+          <textarea id="promptInput" rows="3" placeholder="Ask any question on any topic (e.g. How does backpropagation work in neural networks?)..." required></textarea>
+        </div>
+        <div class="action-row">
+          <span id="activeEngineText" class="engine-info">Engine: Gemini 1.5 Pro</span>
+          <button type="submit" id="generateBtn">Generate ✨</button>
+        </div>
+      </form>
+    </main>
+
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
