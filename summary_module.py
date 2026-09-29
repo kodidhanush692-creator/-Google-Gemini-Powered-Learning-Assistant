@@ -9,7 +9,7 @@ def summarize_text(content: str) -> str:
 
     try:
         client = genai.Client(api_key=api_key)
-        model_name = os.getenv("GEMINI_MODEL", "gemini-1.5-pro")
+        model_name = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
         system_instruction = (
             "You are EduGenie Summarizer. Break down the provided study material or topic into:"
             "\n1. **Key Takeaways** (Bulleted list)"

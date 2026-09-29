@@ -1,0 +1,7 @@
+# Optional local models (large downloads, includes PyTorch).
+# Without these, the app falls back to keyword search and a template explainer.
+# Install with: pip install -r requirements.txt -r requirements-ml.txt
+sentence-transformers>=2.5.0
+faiss-cpu>=1.8.0
+transformers>=4.40.0
+torch>=2.2.0

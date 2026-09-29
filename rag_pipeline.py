@@ -37,7 +37,7 @@ class RAGPipeline:
         )
 
         try:
-            model_name = os.getenv("GEMINI_MODEL", "gemini-1.5-pro")
+            model_name = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
             response = self.client.models.generate_content(
                 model=model_name,
                 contents=user_prompt,

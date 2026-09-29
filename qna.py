@@ -9,7 +9,7 @@ def answer_question(question: str, subject: str = "General") -> str:
 
     try:
         client = genai.Client(api_key=api_key)
-        model_name = os.getenv("GEMINI_MODEL", "gemini-1.5-pro")
+        model_name = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
         system_instruction = (
             "You are EduGenie Q&A Expert. Provide clear, accurate, and encouraging answers "
             "to students' questions with step-by-step reasoning and examples."

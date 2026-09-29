@@ -10,7 +10,7 @@ def generate_quiz(topic: str, num_questions: int = 3) -> dict:
 
     try:
         client = genai.Client(api_key=api_key)
-        model_name = os.getenv("GEMINI_MODEL", "gemini-1.5-pro")
+        model_name = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
         system_instruction = (
             f"You are EduGenie Quiz Generator. Generate a {num_questions}-question multiple choice quiz "
             "on the given topic. You MUST respond in strictly valid JSON matching this schema:\n"
