@@ -43,8 +43,7 @@ class ProcessRequest(BaseModel):
 @app.get("/", response_class=HTMLResponse)
 async def index(request: Request):
     """Serves the main EduGenie Web Interface."""
-    return templates.TemplateResponse("index.html", {
-        "request": request,
+    return templates.TemplateResponse(request, "index.html", {
         "app_name": "EduGenie",
         "description": "Google Gemini Powered Learning Assistant"
     })
@@ -70,19 +69,21 @@ async def process_text_action(data: ProcessRequest):
 
         elif action == "qna":
             result = answer_question(text, data.subject)
-            return {"type": "text", "model": "Gemini 1.5 Pro (Cloud)", "data": result}
+            return {"type": "text", "model": "Gemini 2.5 Flash (Cloud)", "data": result}
 
         elif action == "quiz":
             result = generate_quiz(text)
-            return {"type": "quiz", "model": "Gemini 1.5 Pro (Cloud)", "data": result}
+            if "error" in result:
+                return JSONResponse(status_code=500, content={"error": result["error"]})
+            return {"type": "quiz", "model": "Gemini 2.5 Flash (Cloud)", "data": result}
 
         elif action == "summary":
             result = summarize_text(text)
-            return {"type": "text", "model": "Gemini 1.5 Pro (Cloud)", "data": result}
+            return {"type": "text", "model": "Gemini 2.5 Flash (Cloud)", "data": result}
 
         elif action == "learning_path":
             result = generate_learning_path(text)
-            return {"type": "text", "model": "Gemini 1.5 Pro (Cloud)", "data": result}
+            return {"type": "text", "model": "Gemini 2.5 Flash (Cloud)", "data": result}
 
         else:
             return JSONResponse(status_code=400, content={"error": f"Unknown action: {action}"})
@@ -96,7 +97,7 @@ async def upload_pdf(file: UploadFile = File(...)):
     if not file.filename.lower().endswith(".pdf"):
         return JSONResponse(status_code=400, content={"error": "Please upload a valid .pdf file."})
 
-    file_path = os.path.join("uploads", file.filename)
+    file_path = os.path.join("uploads", os.path.basename(file.filename))
     try:
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)

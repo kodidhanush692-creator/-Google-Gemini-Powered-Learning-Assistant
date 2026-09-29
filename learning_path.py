@@ -9,7 +9,7 @@ def generate_learning_path(goal: str, target_timeline_weeks: int = 4) -> str:
 
     try:
         client = genai.Client(api_key=api_key)
-        model_name = os.getenv("GEMINI_MODEL", "gemini-1.5-pro")
+        model_name = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
         system_instruction = (
             f"You are EduGenie Curriculum Architect. Create a structured {target_timeline_weeks}-week "
             "learning roadmap for the requested goal. For each week include: "

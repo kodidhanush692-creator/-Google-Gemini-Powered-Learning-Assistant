@@ -1,0 +1,9 @@
+node_modules
+__pycache__
+**/__pycache__
+.pytest_cache
+tests
+uploads/*
+scripts
+requirements-ml.txt
+.env*

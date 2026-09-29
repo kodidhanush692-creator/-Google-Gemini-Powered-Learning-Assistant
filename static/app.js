@@ -22,9 +22,9 @@ tabs.forEach((tab) => {
     if (currentAction === "explain") {
       activeEngineText.textContent = "Engine: LaMini-Flan-T5-783M (Local CPU)";
     } else if (currentAction === "doc_qa") {
-      activeEngineText.textContent = "Engine: Gemini 1.5 Pro + FAISS Vector RAG";
+      activeEngineText.textContent = "Engine: Gemini 2.5 Flash + FAISS Vector RAG";
     } else {
-      activeEngineText.textContent = "Engine: Gemini 1.5 Pro (Cloud API)";
+      activeEngineText.textContent = "Engine: Gemini 2.5 Flash (Cloud API)";
     }
   });
 });

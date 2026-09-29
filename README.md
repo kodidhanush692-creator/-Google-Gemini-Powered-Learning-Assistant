@@ -66,7 +66,7 @@ cp .env.example .env
 Inside `.env`:
 ```env
 GEMINI_API_KEY=your_actual_gemini_api_key_here
-GEMINI_MODEL=gemini-1.5-pro
+GEMINI_MODEL=gemini-2.5-flash
 ```
 
 ### 4. Run Locally

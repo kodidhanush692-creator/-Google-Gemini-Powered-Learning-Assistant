@@ -1,0 +1,10 @@
+{
+  "name": "edugenie",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EduGenie: Google Gemini Powered Learning Assistant (FastAPI). This file only exists so the v0 preview can launch the Python dev server.",
+  "scripts": {
+    "dev": "sh scripts/dev.sh",
+    "test": "sh scripts/dev.sh test"
+  }
+}
