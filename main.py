@@ -22,10 +22,9 @@ from rag_pipeline import RAGPipeline
 
 app = FastAPI(title="EduGenie: Google Gemini Powered Learning Assistant")
 
-# Ensure required directories exist
-os.makedirs("templates", exist_ok=True)
-os.makedirs("static", exist_ok=True)
-os.makedirs("uploads", exist_ok=True)
+# Serverless platforms (e.g. Vercel) mount the app read-only; only /tmp is writable.
+UPLOAD_DIR = "/tmp/uploads" if os.environ.get("VERCEL") else "uploads"
+os.makedirs(UPLOAD_DIR, exist_ok=True)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
@@ -97,7 +96,7 @@ async def upload_pdf(file: UploadFile = File(...)):
     if not file.filename.lower().endswith(".pdf"):
         return JSONResponse(status_code=400, content={"error": "Please upload a valid .pdf file."})
 
-    file_path = os.path.join("uploads", os.path.basename(file.filename))
+    file_path = os.path.join(UPLOAD_DIR, os.path.basename(file.filename))
     try:
         with open(file_path, "wb") as buffer:
             shutil.copyfileobj(file.file, buffer)
